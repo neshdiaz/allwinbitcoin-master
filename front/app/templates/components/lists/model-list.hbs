@@ -1,0 +1,8 @@
+
+{{yield (hash
+  items=model
+  isLoading=isLoading
+  haveMoreItems=meta.haveMoreRecords
+  loadMore=loadMore
+  loadMoreComponent=(component "lists/utils/load-more" loadMore=loadMore)
+)}}

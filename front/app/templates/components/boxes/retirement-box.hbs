@@ -1,0 +1,32 @@
+<div class="box-header with-border">
+  <h3 class="box-title">
+    {{t "retirement_title_box"}}
+  </h3>
+  <div class="pull-right box-tools">
+    {{#if app.user.btcAddress}}
+      <button type="button" class="btn btn-primary btn-sm"
+        {{action "createRetirement"}}>
+        {{t "action_create_retirement"}}
+      </button>
+    {{else}}
+      <button type="button" class="btn btn-primary btn-sm" disabled>
+        {{t "action_create_retirement"}}
+        {{#tooltip-on-element side="bottom"}}
+          {{t "msg_user_dont_have_btc_address"}}
+        {{/tooltip-on-element}}
+      </button>
+    {{/if}}
+  </div>
+</div>
+<div class="box-body">
+  {{tables/retirement-table}}
+</div>
+
+{{modals/form-modal
+  form="forms/retirement-form"
+  open=openModal
+  modalSize="sm"
+  model=model
+  title=(t "title_create_retirement_form")
+  onFormSuccess=(action "onFormSuccess")
+  }}

@@ -1,0 +1,50 @@
+{{#bs-form onSubmit=(perform save model) novalidate=true model=model as |form|}}
+  {{form.element controlType="email"  property="email" placeholder=(t "email_hint")
+    autofocus=true}}
+  {{form.element property="username" placeholder=(t "username_hint") }}
+  {{form.element property="name" placeholder=(t "name_hint") }}
+  {{form.element property="phone" placeholder=(t "phone_hint") }}
+  {{#form.element property="country" as |el|}}
+    {{#ember-power-select
+      options=countries
+      onchange=(action (mut el.value))
+      placeholder=(t "country_hint")
+      selected=el.value
+      searchField="value"
+      as |country|}}
+      <div class="f32 inline-block middle-align" style="margin-top: -7px">
+        <div class="flag {{country.id}}"></div>
+      </div>
+      <div class="inline-block middle-align" style="margin-top: -7px">
+        {{country.value}}
+      </div>
+    {{/ember-power-select}}
+  {{/form.element}}
+  {{form.element property="city" placeholder=(t "city_hint") }}
+  {{!-- {{#form.element property="language" as |el|}}
+    {{#ember-power-select options=languages onchange=(action "setLanguage")
+      placeholder=(t "language_hint")
+      searchField="name"
+      selected=language
+      as |language|}}
+      {{language.name}}
+    {{/ember-power-select}}
+  {{/form.element}} --}}
+  {{form.element controlType="password"  property="password" placeholder=(t "password_hint")}}
+  {{form.element controlType="password"  property="passwordConfirmation" placeholder=(t "password_confirmation_hint") }}
+
+  <div class="row">
+    <!-- /.col -->
+    <div class="col-xs-4 col-xs-offset-8">
+      {{#bs-button type="primary" buttonType="submit" block=true
+        class="btn-flat"}}
+        {{#if save.isRunning}}
+          {{fa-icon "circle-o-notch" spin=true}}
+        {{else}}
+          {{t "action_register"}}
+        {{/if}}
+      {{/bs-button}}
+    </div>
+    <!-- /.col -->
+  </div>
+{{/bs-form}}

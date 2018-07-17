@@ -1,0 +1,10 @@
+{{yield}}
+
+{{modals/form-modal
+  form="forms/profile-form"
+  open=openModal
+  model=model
+  modalSize="sm"
+  title=(t "title_profile_form")
+  onFormSuccess=(action "onFormSuccess")
+  }}

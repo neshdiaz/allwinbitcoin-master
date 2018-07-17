@@ -1,0 +1,11 @@
+{{#if row.isPending}}
+  <a href="#" {{action "toggleExpanded"}}>
+    {{#if row.expanded}}
+      {{t "action_hide"}}
+      {{fa-icon "arrow-up"}}
+    {{else}}
+      {{t "action_show"}}
+      {{fa-icon "arrow-down"}}
+    {{/if}}
+  </a>
+{{/if}}

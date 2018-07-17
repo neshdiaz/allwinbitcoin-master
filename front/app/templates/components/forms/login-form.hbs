@@ -1,0 +1,31 @@
+{{#bs-form onSubmit=(perform authenticate) model=this as |form|}}
+  {{#form.element  property="identification" required=true class="has-feedback" as |el|}}
+    <input value={{el.value}} class="form-control" oninput={{action (mut el.value)    value="target.value"}} onchange={{action (mut el.value) value="target.value"}}
+    id={{el.id}}
+    placeholder={{t "email_or_username_hint"}}
+    autofocus="autofocus"
+    >
+    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+  {{/form.element}}
+  {{#form.element  property="password" required=true class="has-feedback" as |el|}}
+    <input value={{el.value}} class="form-control" oninput={{action (mut el.value) value="target.value"}} onchange={{action (mut el.value) value="target.value"}}
+    id={{el.id}} type="password"
+    placeholder={{t "password_hint"}}
+    >
+    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+  {{/form.element}}
+  <div class="row">
+      <!-- /.col -->
+      <div class="col-xs-4 col-xs-offset-8">
+        {{#bs-button type="primary" buttonType="submit"
+          class="btn-block btn-flat"}}
+          {{#if authenticate.isRunning}}
+            {{fa-icon "circle-o-notch" spin=true}}
+          {{else}}
+            {{t "action_signin"}}
+          {{/if}}
+        {{/bs-button}}
+      </div>
+      <!-- /.col -->
+    </div>
+{{/bs-form}}

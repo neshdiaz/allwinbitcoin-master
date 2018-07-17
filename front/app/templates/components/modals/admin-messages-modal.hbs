@@ -1,0 +1,36 @@
+{{#if open}}
+  {{#bs-modal open=open
+    onHidden=(action "onHidden")
+    size=modalSize
+    as |modal|}}
+    {{#modal.header}}
+      <h4 class="modal-title">{{title}}</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p class="text-center">
+          {{google-translate}}
+      </p>
+
+      {{#each app.adminMessages as |message|}}
+        {{#bs-alert type=message.style dismissible=false}}
+          <div class="pre-line">{{{message.messageNormalized}}}</div>
+        {{/bs-alert}}
+      {{/each}}
+
+      <br>
+      <br>
+
+      <div class="row">
+        <!-- /.col -->
+        <div class="col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2">
+          {{#bs-button type="primary" block=true
+            onClick=(action "accept" modal)
+            class="btn-flat"}}
+            Aceptar
+          {{/bs-button}}
+        </div>
+        <!-- /.col -->
+      </div>
+    {{/modal.body}}
+  {{/bs-modal}}
+{{/if}}

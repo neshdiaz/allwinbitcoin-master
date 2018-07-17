@@ -1,0 +1,17 @@
+{{#if open}}
+  {{#bs-modal open=open
+    onHidden=(action (mut open) false)
+    size=modalSize
+    class="modal-with-component"
+    as |modal|}}
+    {{#modal.header}}
+      <h4 class="modal-title">{{title}}</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      {{component component
+        model=model
+        modal=modal
+        }}
+    {{/modal.body}}
+  {{/bs-modal}}
+{{/if}}

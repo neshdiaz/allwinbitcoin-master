@@ -1,0 +1,34 @@
+{{#bs-form onSubmit=(perform save model) novalidate=true model=model as |form|}}
+  {{form.element property="identifier" label=(t "level_identifier_hint")
+    autofocus=true}}
+
+  {{form.element property="abbr" label=(t "abbr_hint")}}
+
+  {{form.element property="value" label=(t "value_hint")
+    controlType="number"}}
+
+  {{form.element property="commission" label=(t "commission_hint")
+    controlType="number"}}
+
+  {{form.element property="quickStartBonus" label=(t "quick_start_bonus_hint")
+    controlType="number"}}
+
+  <div class="row">
+    <!-- /.col -->
+    <div class="col-xs-4 col-xs-offset-4">
+      {{#bs-button type="primary" buttonType="submit" block=true
+        class="btn-flat"}}
+        {{#if save.isRunning}}
+          {{fa-icon "circle-o-notch" spin=true}}
+        {{else}}
+          {{#if model.isNew}}
+            {{t "action_create"}}
+          {{else}}
+            {{t "action_update"}}
+          {{/if}}
+        {{/if}}
+      {{/bs-button}}
+    </div>
+    <!-- /.col -->
+  </div>
+{{/bs-form}}

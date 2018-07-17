@@ -1,0 +1,29 @@
+{{#light-table table tableActions=tableActions as |t|}}
+
+  {{t.head
+    onColumnClick=(action 'onColumnClick')
+    iconAscending='fa fa-sort-asc'
+    iconDescending='fa fa-sort-desc'
+  }}
+
+  {{#t.body
+    canSelect=canSelect
+    canExpand=canExpand
+    multiRowExpansion=multiRowExpansion
+    onScrolledToBottom=(action 'onScrolledToBottom')
+    as |body|
+  }}
+
+    {{#if isLoading}}
+      {{#body.loader}}
+        {{spinner-loader}}
+      {{/body.loader}}
+    {{/if}}
+
+    {{#body.expanded-row as |row|}}
+      {{component expandedRowComponent row=row
+          model=row.content}}
+    {{/body.expanded-row}}
+  {{/t.body}}
+
+{{/light-table}}

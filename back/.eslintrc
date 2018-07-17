@@ -1,0 +1,6 @@
+{
+    "extends": "eslint-config-hapi",
+    "rules": {
+        "no-shadow": ["error", { "allow": ["next", "done", "err"] }]
+    }
+}

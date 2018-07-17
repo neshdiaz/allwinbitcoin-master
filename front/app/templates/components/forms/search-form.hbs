@@ -1,0 +1,13 @@
+<form class="form" {{action "search" on="submit"}}>
+  <div class="form-group">
+      <div class="input-group">
+        {{input class="form-control" value=terms placeholder=(t "search_hint")}}
+        <span class="input-group-btn">
+          {{#bs-button type="search" onClick=(action "search")}}
+            {{fa-icon "search"}}
+          {{/bs-button}}
+        </span>
+      </div>
+      <!-- /input-group -->
+  </div>
+</form>

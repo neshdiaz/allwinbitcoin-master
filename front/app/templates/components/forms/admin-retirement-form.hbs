@@ -1,0 +1,52 @@
+{{#bs-form onSubmit=(perform save model) novalidate=true model=model as |form|}}
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="">{{t "value_hint"}}</label>
+        <p class="form-control-static">
+          {{model.value}} {{app.user.config.currency}}
+        </p>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      {{#form.element property="status" label=(t "status_hint") as |el|}}
+        {{#ember-power-select options=retirementStatus onchange=(action (mut el.value))
+          selected=el.value
+          as |item|}}
+          {{t item}}
+        {{/ember-power-select}}
+      {{/form.element}}
+    </div>
+  </div>
+
+  {{form.element property="observations" label=(t "observations_hint")
+    controlType="textarea" rows="4"
+    autofocus="true"}}
+
+  {{#if model.bitcoinAddress}}
+    <div class="well well-sm">
+      <h3 class="no-margin text-center">
+        <strong>{{model.networth}} {{app.user.config.currency}}</strong>
+      </h3>
+      {{qr-code data=model.bitcoinAddress
+        light="#FFFFFF" dark="#000000"}}
+      <div class="text-center">{{model.bitcoinAddress}}</div>
+    </div>
+  {{/if}}
+
+  <div class="row">
+    <!-- /.col -->
+    <div class="col-xs-4 col-xs-offset-4">
+      {{#bs-button type="primary" buttonType="submit" block=true
+        class="btn-flat"}}
+        {{#if save.isRunning}}
+          {{fa-icon "circle-o-notch" spin=true}}
+        {{else}}
+          {{t "action_update"}}
+        {{/if}}
+      {{/bs-button}}
+    </div>
+    <!-- /.col -->
+  </div>
+{{/bs-form}}

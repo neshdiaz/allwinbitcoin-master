@@ -1,0 +1,11 @@
+
+{{yield}}
+
+{{modals/form-modal
+  form="forms/config-form"
+  open=openModal
+  model=model
+
+  title=(t "title_config_form")
+  onFormSuccess=(action "onFormSuccess")
+  }}

@@ -1,0 +1,23 @@
+{{#bs-form onSubmit=(perform save model) novalidate=true model=model as |form|}}
+  {{form.element property="token" label=(t "token_hint")
+    autofocus=true}}
+  {{form.element property="key" label=(t "key_hint")
+    controlType="password"}}
+  {{form.element property="keyConfirmation" label=(t "key_confirmation_hint")
+    controlType="password"}}
+
+  <div class="row">
+    <!-- /.col -->
+    <div class="col-xs-4 col-xs-offset-4">
+      {{#bs-button type="primary" buttonType="submit" block=true
+        class="btn-flat"}}
+        {{#if save.isRunning}}
+          {{fa-icon "circle-o-notch" spin=true}}
+        {{else}}
+          {{t "action_generate"}}
+        {{/if}}
+      {{/bs-button}}
+    </div>
+    <!-- /.col -->
+  </div>
+{{/bs-form}}

@@ -1,0 +1,36 @@
+<div class="box-header with-border">
+  <h3 class="box-title">
+    {{t "admin_list_box"}}
+  </h3>
+  <div class="pull-right box-tools">
+    <button type="button" class="btn btn-primary btn-sm"
+      {{action "createList"}}>
+      {{t "action_create_list"}}
+    </button>
+  </div>
+</div>
+<div class="box-body">
+  <div class="filters">
+    <div class="row">
+      <div class="col-sm-4">
+        {{filters/level-filter
+          selected=selected
+          onchange=(action "onChangeFilter")}}
+      </div>
+      <div class="col-sm-4 col-sm-offset-4">
+        {{forms/search-form modelName="admin-list"}}
+      </div>
+    </div>
+  </div>
+
+  {{tables/admin-list-table}}
+</div>
+
+{{modals/form-modal
+  form="forms/admin-list-form"
+  open=openModal
+  model=model
+  modalSize="sm"
+  title=(t "title_create_admin_list_form")
+  onFormSuccess=(action "onFormSuccess")
+  }}

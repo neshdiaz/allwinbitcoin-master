@@ -1,0 +1,14 @@
+node_modules
+test/artifacts/*
+
+fixtures
+files
+
+.DS_Store
+.env
+.env-test
+
+npm-debug.log*
+testem.log
+
+package-lock.json

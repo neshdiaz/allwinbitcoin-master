@@ -1,0 +1,44 @@
+{{!--
+{{#if (and row.isInactive row.fromAdmin)}}
+  <a href="#" class="btn btn-sm btn-primary" {{action (mut openModal) true}}>
+    {{fa-icon "edit"}}
+  </a>
+{{/if}}
+
+{{#if (and row.isInactive row.fromAdmin)}}
+  <button class="btn btn-sm btn-danger"
+    onclick={{perform tableActions.delete row}}>
+  {{#if tableActions.delete.isRunning}}
+    {{fa-icon "cog" spin=true}}
+  {{else}}
+    {{fa-icon "trash"}}
+  {{/if}}
+  </button>
+{{/if}}
+--}}
+
+  <a href="#" class="btn btn-sm btn-primary" {{action (mut openModal) true}}>
+    {{fa-icon "edit"}}
+  </a>
+
+  <button class="btn btn-sm btn-danger"
+    onclick={{perform tableActions.delete row}}>
+  {{#if tableActions.delete.isRunning}}
+    {{fa-icon "cog" spin=true}}
+  {{else}}
+    {{fa-icon "trash"}}
+  {{/if}}
+  </button>
+
+{{#link-to "app.list" row.id class="btn btn-sm btn-default"}}
+  {{fa-icon "eye"}}
+{{/link-to}}
+
+
+{{modals/form-modal
+  form="forms/admin-list-form"
+  open=openModal
+  model=row.content
+  modalSize="sm"
+  title=(t "title_update_admin_list_form")
+  }}

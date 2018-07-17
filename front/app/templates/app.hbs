@@ -1,0 +1,291 @@
+
+<div class="wrapper">
+
+  <!-- Main Header -->
+  <header class="main-header">
+
+    <!-- Logo -->
+    {{#link-to "app" class="logo"}}
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini notranslate"><b>AW</b>B</span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg notranslate"><b>Allwin</b>bitcoin</span>
+    {{/link-to}}
+
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top" role="navigation">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" class="visible-xs">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+
+      <!-- Navbar Right Menu -->
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <p class="navbar-text hidden-xs">
+            {{google-translate}}
+          </p>
+          <p class="navbar-text notranslate hidden-xs" style="color: white">http://allwinbitcoin.com/r/{{app.user.username}}</p>
+          <!-- User Account Menu -->
+          <li class="dropdown user user-menu">
+            <!-- Menu Toggle Button -->
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <!-- The user image in the navbar-->
+              {{#if app.user.avatar}}
+                <img src="{{app.user.avatar}}" class="user-image" alt="User Image">
+              {{/if}}
+              <!-- hidden-xs hides the username on small devices so only the image appears. -->
+              <span class="notranslate">{{app.user.name}}</span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- The user image in the menu -->
+              <li class="user-header">
+                {{#if app.user.avatar}}
+                  <img src="{{app.user.avatar}}" class="img-circle" alt="User Image">
+                {{/if}}
+                <p class="notranslate">
+                  {{app.user.name}}
+                  <small>{{app.user.username}}</small>
+                </p>
+                <h3 style="color: white">
+                  {{t "balance"}}<br>
+                  {{format-money app.user.wallet.balance symbol=""
+                    precision=5}}
+                  {{app.user.config.currency}}
+                </h3>
+              </li>
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-left">
+                  {{#buttons/profile-button class="btn btn-default btn-flat"}}
+                    {{t "action_view_profile"}}
+                  {{/buttons/profile-button}}
+                </div>
+                <div class="pull-right">
+                  <a href="" class="btn btn-default btn-flat" {{action "invalidateSession"}}>
+                    {{t "action_logout"}}
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+
+      <!-- Sidebar Menu -->
+      {{#adminlte/sidebar-menu}}
+        <li class="header">{{t "app_menu_header"}}</li>
+
+        {{#if (and (not app.user.isAdmin) (not app.isLoading))}}
+          {{!--Levels--}}
+          <li>
+            <a>
+              {{fa-icon "trophy"}} <span>{{t "menu_levels"}}</span>
+            </a>
+            {{#lists/level-list tagName="ul" sort="value" all=true as |list|}}
+              {{#each list.items as |item|}}
+                {{items/level-item model=item tagName="li"}}
+              {{else}}
+                {{items/empty-item}}
+              {{/each}}
+            {{/lists/level-list}}
+          </li>
+
+          {{!--Lists--}}
+          <li>
+            <a>
+              {{fa-icon "list"}} <span>{{t "menu_my_lists"}}</span>
+            </a>
+            {{#lists/list-list tagName="ul" sort="__level number" all=true as |list|}}
+              {{#each list.items as |item|}}
+                {{#link-to "app.list" item.id tagName="li"}}
+                  {{items/simple-list-item model=item}}
+                {{/link-to}}
+              {{else}}
+                {{items/empty-item}}
+              {{/each}}
+            {{/lists/list-list}}
+          </li>
+
+          {{!--My requests--}}
+          <li>
+            <a>
+              {{fa-icon "briefcase"}} <span>{{t "menu_my_requests"}}</span>
+            </a>
+            <ul>
+              {{#link-to "app.joins" tagName="li"}}
+                <a href="#">
+                  {{t "menu_my_joins"}}
+                </a>
+              {{/link-to}}
+              {{#link-to "app.retirements" tagName="li"}}
+                <a href="#">
+                  {{t "menu_my_retirements"}}
+                </a>
+              {{/link-to}}
+            </ul>
+          </li>
+
+          {{!--Transactions menu--}}
+          <li>
+            <a>
+              {{fa-icon "money"}} <span>{{t "menu_transactions"}}</span>
+            </a>
+            <ul>
+              {{#link-to "app.movements" tagName="li"}}
+                <a href="#">
+                  {{t "menu_movements"}}
+                </a>
+              {{/link-to}}
+              {{#link-to "app.transfers" tagName="li"}}
+                <a href="#">
+                  {{t "menu_transfers"}}
+                </a>
+              {{/link-to}}
+              {{#link-to "app.orders" tagName="li"}}
+                <a href="#">
+                  {{t "menu_orders"}}
+                </a>
+              {{/link-to}}
+            </ul>
+          </li>
+
+          {{!--Options menu--}}
+          <li>
+            <a>
+              {{fa-icon "cog"}} <span>{{t "menu_options"}}</span>
+            </a>
+            <ul>
+              {{#items/change-password-menu-item tagName="li"}}
+                <a href="#">
+                  {{t "menu_change_password"}}
+                </a>
+              {{/items/change-password-menu-item}}
+              {{#items/second-key-menu-item tagName="li"}}
+                <a href="#">
+                  {{t "menu_new_second_key"}}
+                </a>
+              {{/items/second-key-menu-item}}
+            </ul>
+          </li>
+
+          {{!--Referreds menu--}}
+          <li>
+            <a>
+              {{fa-icon "users"}} <span>{{t "menu_referreds"}}</span>
+            </a>
+            {{#lists/referred-list tagName="ul" sort="createdAt" sortDir="desc"
+              all=true as |list|}}
+              {{#each list.items as |item|}}
+                {{items/referred-item tagName="li" model=item}}
+              {{else}}
+                {{items/empty-item}}
+              {{/each}}
+            {{/lists/referred-list}}
+          </li>
+        {{else}}
+          {{!--Admin--}}
+          {{#if (and (not app.isLoading) app.user.isAdmin)}}
+          <li>
+            <a>
+              {{fa-icon "wrench"}} <span>{{t "menu_admin"}}</span>
+            </a>
+            <ul>
+              {{#link-to "app.admin.lists" tagName="li"}}
+                <a href="#">
+                  {{t "menu_admin_lists"}}
+                </a>
+              {{/link-to}}
+              {{#link-to "app.admin.levels" tagName="li"}}
+                <a href="#">
+                  {{t "menu_admin_levels"}}
+                </a>
+              {{/link-to}}
+              {{#link-to "app.admin.retirements" tagName="li"}}
+                <a href="#">
+                  {{t "menu_admin_retirements"}}
+                </a>
+              {{/link-to}}
+              {{#link-to "app.admin.messages" tagName="li"}}
+                <a href="#">
+                  {{t "menu_admin_messages"}}
+                </a>
+              {{/link-to}}
+              {{#link-to "app.admin.users" tagName="li"}}
+                <a href="#">
+                  {{t "menu_admin_users"}}
+                </a>
+              {{/link-to}}
+              {{#items/change-password-menu-item tagName="li"}}
+                <a href="#">
+                  {{t "menu_change_password"}}
+                </a>
+              {{/items/change-password-menu-item}}
+              {{#items/config-menu-item tagName="li"}}
+                <a href="#">
+                  {{t "menu_admin_config"}}
+                </a>
+              {{/items/config-menu-item}}
+            </ul>
+          </li>
+          {{else}}
+            <li>
+              {{spinner-loader}}
+            </li>
+          {{/if}}
+        {{/if}}
+      {{/adminlte/sidebar-menu}}
+
+      <!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-md-10 col-sm-9">
+          <div class="visible-xs text-center">
+            {{google-translate}}<br>
+          </div>
+          {{outlet}}
+        </div>
+        <div class="col-md-2 col-sm-3">
+          {{#lists/event-list as |list|}}
+            {{#each list.items as |item|}}
+              {{items/event-item model=item}}
+            {{/each}}
+          {{/lists/event-list}}
+        </div>
+      </div>
+
+    </section>
+
+
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <!-- To the right -->
+    <div class="pull-right hidden-xs">
+      Ver. 1.0
+    </div>
+    <!-- Default to the left -->
+    <strong>
+      Copyright &copy; 2017 <a href="https://www.allwinbitcoin.com/" target="_blank">Allwinbitcoin</a>.</strong> {{t "app_copyright"}}.
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+{{modals/admin-messages-modal
+  open=showMessages}}

@@ -1,0 +1,23 @@
+<div class="box-header with-border">
+  <h3 class="box-title">
+    {{t "order_title_box"}}
+  </h3>
+  <div class="pull-right box-tools">
+    <button type="button" class="btn btn-primary btn-sm"
+      {{action "createOrder"}}>
+      {{t "action_create_order"}}
+    </button>
+  </div>
+</div>
+<div class="box-body">
+  {{tables/order-table}}
+</div>
+
+{{modals/form-modal
+  form="forms/order-form"
+  open=openModal
+  model=model
+  modalSize="sm"
+  title=(t "title_create_order_form")
+  onFormSuccess=(action "onFormSuccess")
+  }}

@@ -1,0 +1,103 @@
+{{#bs-form onSubmit=(perform save model) novalidate=true model=model as |form|}}
+  <div class="row">
+    <div class="col-sm-6">
+      {{form.element property="minimumBalanceToCollect"
+        label=(concat (concat (t "minimumBalanceToCollect_hint") " ") app.user.config.currency)
+        autofocus=true}}
+    </div>
+
+    <div class="col-sm-6">
+      {{form.element property="transferFee"
+        label=(concat (concat (t "transferFee_hint") " ") app.user.config.currency)}}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      {{form.element property="orderFee"
+        label=(concat (t "orderFee_hint") " %")}}
+    </div>
+
+    <div class="col-sm-6">
+      {{form.element property="currency"
+        label=(t "currency_hint")}}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      {{form.element property="retirementFee"
+        label=(concat (concat (t "retirementFee_hint") " ") "%")}}
+    </div>
+  </div>
+
+  <strong>Días habilitados para retiro</strong>
+
+  <div class="row">
+    <div class="col-sm-3">
+      {{form.element
+        property="monday"
+        controlType="checkbox"
+        label="Lunes"}}
+    </div>
+
+    <div class="col-sm-3">
+      {{form.element
+        property="tuesday"
+        controlType="checkbox"
+        label="Martes"}}
+    </div>
+
+    <div class="col-sm-3">
+      {{form.element
+        property="wednesday"
+        controlType="checkbox"
+        label="Miercoles"}}
+    </div>
+
+    <div class="col-sm-3">
+      {{form.element
+        property="thursday"
+        controlType="checkbox"
+        label="Jueves"}}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-3">
+      {{form.element
+        property="friday"
+        controlType="checkbox"
+        label="viernes"}}
+    </div>
+
+    <div class="col-sm-3">
+      {{form.element
+        property="saturday"
+        controlType="checkbox"
+        label="Sabado"}}
+    </div>
+
+    <div class="col-sm-3">
+      {{form.element
+        property="sunday"
+        controlType="checkbox"
+        label="Domingo"}}
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- /.col -->
+    <div class="col-xs-6 col-xs-offset-3">
+      {{#bs-button type="primary" buttonType="submit" block=true
+        class="btn-flat"}}
+        {{#if save.isRunning}}
+          {{fa-icon "circle-o-notch" spin=true}}
+        {{else}}
+          {{t "action_update"}}
+        {{/if}}
+      {{/bs-button}}
+    </div>
+    <!-- /.col -->
+  </div>
+{{/bs-form}}

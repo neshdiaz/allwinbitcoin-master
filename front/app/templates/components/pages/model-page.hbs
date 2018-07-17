@@ -1,0 +1,15 @@
+<div class="page-actions">
+  <button class="btn btn-primary" {{action "add"}}>
+    {{t "action_add"}}
+  </button>
+</div>
+
+{{component table}}
+
+{{component formModal
+  model=model
+  open=openModal
+  onFormSuccess=(action "onFormSuccess")
+  onFormError=(action "onFormError")
+  }}
+

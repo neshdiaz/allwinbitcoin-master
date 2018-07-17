@@ -1,0 +1,54 @@
+<div class="well well-sm">
+  <div class="row">
+    <div class="col-sm-6">
+      <dl>
+        <dt>{{t "name_hint"}}</dt>
+        <dd>{{row.name}}&nbsp;</dd>
+        <dt>{{t "phone_hint"}}</dt>
+        <dd>{{row.phone}}&nbsp;</dd>
+        <dt>{{t "sponsor_hint"}}</dt>
+        <dd>{{row.sponsor.username}}&nbsp;</dd>
+        <dt>{{t "city_hint"}}</dt>
+        <dd>{{row.city}}&nbsp;</dd>
+        <dt>{{t "language_hint"}}</dt>
+        <dd>{{row.language}}&nbsp;</dd>
+      </dl>
+    </div>
+
+    <div class="col-sm-6">
+      <dl>
+        <dt>{{t "referreds_hint"}} ({{row.referreds}})</dt>
+        <dd>
+          {{#each row.referredList as |user|}}
+            {{user.username}}<br>
+          {{else}}
+            &nbsp;
+          {{/each}}
+        </dd>
+        <dt>{{t "active_referreds_hint"}} ({{row.activeReferredsList.length}})</dt>
+        <dd>
+          {{#each row.activeReferredsList as |user|}}
+            {{user.username}}<br>
+          {{else}}
+            &nbsp;
+          {{/each}}
+        </dd>
+        <dt>{{t "btc_address_hint"}}</dt>
+        <dd>{{row.btcAddress}}&nbsp;</dd>
+        <dt>{{t "active_levels_hint"}}</dt>
+        <dd>
+          {{#each row.activeLevels as |level|}}
+            {{level.identifier}}<br>
+          {{/each}}
+          &nbsp;
+        </dd>
+        <dt>{{t "balance_hint"}}</dt>
+        <dd>
+           {{format-money row.wallet.balance symbol=""
+            precision=5}}
+          {{app.user.config.currency}}
+        </dd>
+      </dl>
+    </div>
+  </div>
+</div>

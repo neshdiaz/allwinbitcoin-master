@@ -1,0 +1,39 @@
+{{#bs-form onSubmit=(perform save model) novalidate=true model=model
+  autocomplete="off"
+  as |form|}}
+  <div class="alert alert-danger">
+    <strong>
+    <em>
+      {{t "msg_for_new_retirement"}}
+      {{app.user.config.minimumBalanceToCollectStr}} {{app.user.config.currency}}
+    </em>
+    </strong>
+  </div>
+
+  {{form.element property="value"
+      label=(concat
+        (t "value_hint")
+        (concat " " app.user.config.currency)
+      )
+      autofocus=true
+      autocomplete="off"}}
+  {{form.element property="secondKey"
+    label=(t "second_key_hint")
+    controlType="password"
+    autocomplete="off"}}
+
+  <div class="row">
+    <!-- /.col -->
+    <div class="col-xs-6 col-xs-offset-3">
+      {{#bs-button type="primary" buttonType="submit" block=true
+        class="btn-flat"}}
+        {{#if save.isRunning}}
+          {{fa-icon "circle-o-notch" spin=true}}
+        {{else}}
+          {{t "action_create"}}
+        {{/if}}
+      {{/bs-button}}
+    </div>
+    <!-- /.col -->
+  </div>
+{{/bs-form}}

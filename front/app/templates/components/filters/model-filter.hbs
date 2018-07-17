@@ -1,0 +1,13 @@
+{{#ember-power-select
+    onchange=(action "onchange")
+    options=model
+    selected=selected
+    placeholder=placeholder
+    allowClear=true
+    searchField=searchField as |item|}}
+  {{#if itemComponent}}
+    {{component itemComponent model=item}}
+  {{else}}
+    {{get item property}}
+  {{/if}}
+{{/ember-power-select}}

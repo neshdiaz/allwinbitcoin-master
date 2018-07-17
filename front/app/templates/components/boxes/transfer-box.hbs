@@ -1,0 +1,23 @@
+<div class="box-header with-border">
+  <h3 class="box-title">
+    {{t "transfer_title_box"}}
+  </h3>
+  <div class="pull-right box-tools">
+    <button type="button" class="btn btn-primary btn-sm"
+      {{action "createTransfer"}}>
+      {{t "action_create_transfer"}}
+    </button>
+  </div>
+</div>
+<div class="box-body">
+  {{tables/transfer-table}}
+</div>
+
+{{modals/form-modal
+  form="forms/transfer-form"
+  open=openModal
+  modalSize="sm"
+  model=model
+  title=(t "title_create_transfer_form")
+  onFormSuccess=(action "onFormSuccess")
+  }}

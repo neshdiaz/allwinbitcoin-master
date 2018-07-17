@@ -1,0 +1,20 @@
+<div class="box-header with-border">
+  <h3 class="box-title">
+    {{t "admin_retirement_box"}}
+  </h3>
+</div>
+<div class="box-body">
+  <div class="filters">
+    <div class="row">
+      <div class="col-sm-3">
+        {{filters/retirement-status-filter
+          onchange=(action "onChangeFilter")}}
+      </div>
+      <div class="col-sm-4 col-sm-offset-5">
+        {{forms/search-form modelName="retirement"}}
+      </div>
+    </div>
+  </div>
+
+  {{tables/admin-retirement-table}}
+</div>

@@ -1,0 +1,19 @@
+<a href="#" class="btn btn-sm btn-primary" {{action (mut openModal) true}}>
+  {{fa-icon "edit"}}
+</a>
+
+<button class="btn btn-sm btn-danger"
+  onclick={{perform tableActions.delete row}}>
+  {{#if tableActions.delete.isRunning}}
+    {{fa-icon "cog" spin=true}}
+  {{else}}
+    {{fa-icon "trash"}}
+  {{/if}}
+</button>
+
+{{modals/form-modal
+  form="forms/admin-message-form"
+  open=openModal
+  model=row.content
+  title=(t "title_update_admin_message_form")
+  }}

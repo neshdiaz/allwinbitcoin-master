@@ -1,0 +1,15 @@
+
+{{#if row.isPending}}
+  <div class="well well-sm">
+    <div class="text-center">
+      <h3 class="no-margin">
+        {{t "msg_order_row_header"}}
+        <strong>{{row.amount_in_btc}} BTC</strong><br>
+        {{t "msg_order_row_subheader"}}
+      </h3>
+      <p>{{row.address}}</p>
+    </div>
+    {{qr-code data=row.bitcoinAddress
+      light="#FFFFFF" dark="#000000"}}
+  </div>
+{{/if}}

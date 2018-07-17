@@ -1,0 +1,54 @@
+<div class="box-header with-border">
+  <h3 class="box-title">
+    {{model.toStr}}
+    <small>
+      {{model.level.toStr}}
+    </small>
+  </h3>
+</div>
+<div class="box-body">
+  {{#if model.locked}}
+    <div class="callout callout-danger">
+      <h4>{{t "msg_blocked_list_header"}}</h4>
+
+      <p>{{t "msg_blocked_list_content"}}</p>
+    </div>
+  {{/if}}
+
+  {{#if model.isClosed}}
+    <div class="callout callout-warning">
+      <h4>{{t "msg_closed_list_header"}}</h4>
+      <p>{{t "msg_closed_list_content" date=(moment-format model.createdAt)}}</p>
+    </div>
+  {{/if}}
+
+  <div class="row">
+    <div class="col-sm-12">
+      {{items/list-item model=account_1}}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      {{items/list-item model=account_2}}
+    </div>
+    <div class="col-sm-6">
+      {{items/list-item model=account_3}}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-3">
+      {{items/list-item model=account_4}}
+    </div>
+    <div class="col-sm-3">
+      {{items/list-item model=account_5}}
+    </div>
+    <div class="col-sm-3">
+      {{items/list-item model=account_6}}
+    </div>
+    <div class="col-sm-3">
+      {{items/list-item model=account_7}}
+    </div>
+  </div>
+</div>

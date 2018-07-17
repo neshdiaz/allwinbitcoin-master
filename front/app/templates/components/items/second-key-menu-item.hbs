@@ -1,0 +1,11 @@
+
+{{yield}}
+
+{{modals/form-modal
+  form="forms/second-key-form"
+  open=openModal
+  model=model
+  modalSize="sm"
+  title=(t "title_create_second_key_form")
+  onFormSuccess=(action "onFormSuccess")
+  }}

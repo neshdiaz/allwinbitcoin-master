@@ -1,0 +1,28 @@
+{{#link-to "app.referred" (query-params referred=row.id username=row.username)
+  class="btn btn-sm btn-default"}}
+  {{fa-icon "list"}}
+{{/link-to}}
+
+
+<a href="#" class="btn btn-sm btn-primary" {{action (mut openModal) true bubbles=false}}>
+  {{fa-icon "edit"}}
+</a>
+
+<button class="btn btn-sm btn-danger"
+  {{action (perform tableActions.delete row) bubbles=false}}
+  >
+  {{#if tableActions.delete.isRunning}}
+    {{fa-icon "cog" spin=true}}
+  {{else}}
+    {{fa-icon "trash"}}
+  {{/if}}
+</button>
+
+
+{{modals/form-modal
+  form="forms/admin-user-form"
+  open=openModal
+  modalSize="sm"
+  model=row.content
+  title=(t "title_update_user_form")
+  }}

@@ -1,0 +1,44 @@
+<div class="box-header with-border">
+    <h3 class="box-title">
+      {{#if (not app.isLoading)}}
+        {{t "msg_welcome"}}, {{app.user.name}}
+      {{/if}}
+    </h3>
+</div>
+<div class="box-body">
+    {{#if (and (not app.isLoading) (not app.user.isAdmin))}}
+        <br>
+        <p>
+            {{t "msg_referral_link"}}: <span class="notranslate no-wrap"><em>
+            {{referral_link}}</em></span>
+            <button class="btn btn-default hidden-xs" {{action "copyReferralLink"}}>
+                {{fa-icon "clipboard"}}
+            </button>
+        </p>
+        <hr>
+        <strong>Allwinbitcoin</strong> es un excelente club de amigo donde ganar es muy fácil.
+        <br>
+        <br>
+        Te trae grandes beneficios para ganar:<br>
+        Pago Único por nivel.<br>
+        8 niveles de Ganancia.<br>
+        <br>
+        Bono de Inicio Rápido (ganas el 20% por cada amigo que invites)<br>
+        Sistema de clones por nivel (no necesitas tener múltiples cuentas, entre más amigos directos tengas, más clones de tu cuenta puedes tener)
+        Todos tus referidos te van a seguir.<br>
+        Tiene la ayuda del sistema con cuentas por derrame alimentando las matrices más antiguas.<br>
+        Puedes venderles saldo a tus amigos sino tienen BTC disponibles en el momento.<br>
+        Con 0,005 BTC tienes la posibilidad de ganarte más de 3,895 BTC entrando en todos los niveles, de las mismas ganancias te puedes ir posesionando en todos los niveles.<br>
+        Solo debes cumplir con 3 requisitos para ganar continuamente.<br>
+        Invertir desde 0.005 BTC o el nivel que desees ganar.<br>
+        Invitar 2 amigos en ese nivel.<br>
+        <br>
+        Ayudar a tus 2 amigos a traer sus 2 amigos y que ellos les enseñen a los suyos.<br>
+        <br>
+        Entre más amigos directos tengas más rápido cierras tu matriz y puedes tener más cuentas en ese nivel(clones).<br>
+        <br>
+        <br>
+        Gracias por tu confianza. Éxitos en este negocio.
+
+    {{/if}}
+</div>

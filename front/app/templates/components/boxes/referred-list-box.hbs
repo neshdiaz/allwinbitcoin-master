@@ -1,0 +1,20 @@
+<div class="box-header with-border">
+  <h3 class="box-title">
+    {{t "referred_list_box"}} - {{username}} <small>{{name}} - {{email}} - {{if country country ""}} {{if phone (concat "- " phone) ""}}</small>
+  </h3>
+</div>
+<div class="box-body">
+  <div class="filters">
+    <div class="row">
+      <div class="col-sm-4">
+        {{filters/level-filter
+          onchange=(action "onChangeFilter")}}
+      </div>
+      <div class="col-sm-4 col-sm-offset-4">
+        {{forms/search-form modelName="list"}}
+      </div>
+    </div>
+  </div>
+
+  {{tables/list-table referred=referred}}
+</div>

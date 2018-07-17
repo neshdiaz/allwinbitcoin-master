@@ -1,0 +1,35 @@
+<div class="box-header with-border">
+  <h3 class="box-title">
+    {{t "admin_message_box"}}
+  </h3>
+  <div class="pull-right box-tools">
+    <button type="button" class="btn btn-primary btn-sm"
+      {{action "createMessage"}}>
+      {{t "action_create_message"}}
+    </button>
+  </div>
+</div>
+<div class="box-body">
+  {{!-- <div class="filters">
+    <div class="row">
+      <div class="col-sm-4">
+        {{filters/level-filter
+          selected=selected
+          onchange=(action "onChangeFilter")}}
+      </div>
+      <div class="col-sm-4 col-sm-offset-4">
+        {{forms/search-form modelName="admin-message"}}
+      </div>
+    </div>
+  </div> --}}
+
+  {{tables/admin-message-table}}
+</div>
+
+{{modals/form-modal
+  form="forms/admin-message-form"
+  open=openModal
+  model=model
+  title=(t "title_create_admin_message_form")
+  onFormSuccess=(action "onFormSuccess")
+  }}

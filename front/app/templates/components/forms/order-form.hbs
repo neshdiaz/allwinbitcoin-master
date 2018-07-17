@@ -1,0 +1,19 @@
+{{#bs-form onSubmit=(perform save model) novalidate=true model=model as |form|}}
+  {{form.element controlType="number"  property="value" label=(t "value_in_btc_hint")
+    autofocus=true}}
+
+  <div class="row">
+    <!-- /.col -->
+    <div class="col-xs-4 col-xs-offset-4">
+      {{#bs-button type="primary" buttonType="submit" block=true
+        class="btn-flat"}}
+        {{#if save.isRunning}}
+          {{fa-icon "circle-o-notch" spin=true}}
+        {{else}}
+          {{t "action_create"}}
+        {{/if}}
+      {{/bs-button}}
+    </div>
+    <!-- /.col -->
+  </div>
+{{/bs-form}}

@@ -1,0 +1,35 @@
+<div class="login-logo">
+  <img src="/images/logo.png" class="img-responsive">
+</div>
+
+{{#bs-alert type="danger" visible=hasError
+  onDismissed =(action (mut errorMessage ""))
+  class="text-center"}}
+
+  {{t errorMessage}}
+{{/bs-alert}}
+
+<div class="login-box-body">
+  <div class="text-center">
+    {{google-translate}}
+  </div>
+  <br>
+  {{forms/login-form onError=(action (mut errorMessage))
+    onSuccess=(action "onFormSuccess")}}
+
+  <a href="#" {{action "forgotPassword"}}>
+    {{t "action_forgot_password"}}
+  </a><br>
+  {{#link-to "register" class="text-center"}}
+    {{t "action_want_register"}}
+  {{/link-to}}
+</div>
+
+{{modals/form-modal
+  form="forms/forgot-password-form"
+  open=openModal
+  model=model
+  modalSize="sm"
+  title=(t "title_forgot_password_form")
+  onFormSuccess=(action "onFormSuccess")
+  }}
